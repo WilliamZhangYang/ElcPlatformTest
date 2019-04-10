@@ -1,0 +1,19 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/elcplatform?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&serverTimezone=UTC 
+    username: root
+    password: 111111
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  check-config-location: true
+  type-aliases-package: com.platform.entity
+druid:
+  allow: #允许登陆的IP地址
+    ip: 127.0.0.1
+  login: #登陆的账户密码
+    user_name: root
+    password: 111111
