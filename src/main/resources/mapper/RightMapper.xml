@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!--命名空间，指定对应的Dao-->
+    <mapper namespace="com.platform.dao.RightDao">
+	
+	<resultMap type="com.platform.entity.Right" id="RightResultMap">
+		<id column="rightId" property="rightId"  />
+	    <result column="parentRightId" property="parentRightId"/>
+	    <result column="rightName" property="rightName"/>
+	    <result column="description" property="description" />
+	</resultMap>
+	
+	<insert id="addRight" parameterType="com.platform.entity.Right">
+		INSERT INTO tright (
+			rightId,
+			parentRightId,
+			rightName,
+			description
+		)
+		VALUES
+			(
+				#{rightId},
+				#{parentRightId},
+				#{rightName},
+				#{description}
+			)
+	</insert>
+	
+	<delete id="deleteRight" parameterType="String">
+		delete from tright where rightId = #{rightId}
+	</delete>
+	
+	<update id="updateRight" parameterType="com.platform.entity.Right">
+		update tright set 
+		parentRightId = #{parentRightId},rightName = #{rightName},
+		description = #{description}
+		where rightId = #{rightId}
+	</update>
+	
+	<select id="getAllRight" resultMap="RightResultMap">
+		select 
+			rightId,
+			parentRightId,
+			rightName,
+			description
+		from tright
+	</select>
+	
+	<select id="getRight" resultMap="RightResultMap" parameterType="String" >
+		select 
+			rightId,
+			parentRightId,
+			rightName,
+			description
+		from tright 
+		where rightId = #{rightId}
+	</select>
+	
+</mapper>
