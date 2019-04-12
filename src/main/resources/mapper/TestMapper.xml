@@ -6,8 +6,8 @@
     <mapper namespace="com.platform.dao.TestDao">
 
     <!--使用resultType指定输出类型-->
-    <select id="getUser" resultType="User">
+    <!-- <select id="getUser" resultType="User">
         SELECT * FROM tuser
-    </select>
+    </select> -->
 
 </mapper>

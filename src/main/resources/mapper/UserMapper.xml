@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!--命名空间，指定对应的Dao-->
+    <mapper namespace="com.platform.dao.UserDao">
+
+	<resultMap type="com.platform.entity.User" id="UserResultMap">
+		<id column="userId" property="userId"  />
+	    <result column="loginName" property="loginName"/>
+	    <result column="password" property="password"/>
+	    <result column="userName" property="userName"/>
+	    <result column="mobile" property="mobile"/>
+	    <result column="email" property="email"/>
+	    <result column="createTime" property="createTime" jdbcType="DATE" />
+	    <result column="loginTime" property="loginTime" jdbcType="DATE" />
+	    <result column="lastLoginTime" property="lastLoginTime" jdbcType="DATE" />
+	    <result column="count" property="count"/>
+	</resultMap>
+	
+    <!--使用resultType指定输出类型-->
+    <select id="getAllUser" resultMap="UserResultMap">
+        SELECT
+			userId,
+			loginName,
+			PASSWORD,
+			userName,
+			mobile,
+			email,
+			createTime,
+			loginTime,
+			lastLoginTime,
+			count
+		FROM
+			tuser
+    </select>
+    
+    <select id="getUser" resultMap="UserResultMap" parameterType="String">
+    	SELECT
+			userId,
+			loginName,
+			PASSWORD,
+			userName,
+			mobile,
+			email,
+			createTime,
+			loginTime,
+			lastLoginTime,
+			count
+		FROM
+			tuser
+		where userId = #{userId}
+    </select>
+    
+    <insert id="addUser" parameterType="com.platform.entity.User">
+    	insert into tuser(userId,loginName,password,userName,mobile,email,createTime) values 
+    	(#{userId},#{loginName},#{password},#{userName},#{mobile},#{email},#{createTime})
+    </insert>
+    
+    <delete id="deleteUser" parameterType="String">
+    	delete from tuser where userId = #{userId}
+    </delete>
+    
+    <update id="updateUser" parameterType="com.platform.entity.User">
+    	update tuser set password = #{password},userName = #{userName},mobile = #{mobile},email = #{email} 
+    	where userId = #{userId}
+    </update>
+
+</mapper>

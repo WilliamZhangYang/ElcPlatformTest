@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!--命名空间，指定对应的Dao-->
+    <mapper namespace="com.platform.dao.RoleDao">
+
+	<resultMap type="com.platform.entity.Role" id="RoleResultMap">
+		<id column="roleId" property="roleId"  />
+	    <result column="roleName" property="roleName"/>
+	    <result column="createTime" property="createTime" jdbcType="DATE" />
+	    <result column="description" property="description"/>
+	</resultMap>
+	
+    
+    <insert id="addRole" parameterType="com.platform.entity.Role">
+    	INSERT INTO trole (
+			roleId,
+			roleName,
+			createTime,
+			description
+		)
+		VALUES
+			(
+				#{roleId},
+				#{roleName},
+				#{createTime},
+				#{description}
+			)
+    </insert>
+    
+    <delete id="deleteRole">
+    	delete from trole where roleId = #{roleId}
+    </delete>
+    
+    <update id="updateRole" parameterType="com.platform.entity.Role">
+    	update trole set roleName = #{roleName},description = #{description} 
+    	where roleId = #{roleId}
+    </update>
+    
+    <select id="getAllRole" resultMap="RoleResultMap">
+    	select roleId,roleName,createTime,description from trole
+    </select>
+    
+    <select id="getRole" resultMap="RoleResultMap" parameterType="String">
+    	select roleId,roleName,createTime,description from trole where roleId = #{roleId}
+    </select>
+    
+
+</mapper>

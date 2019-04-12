@@ -18,10 +18,10 @@ public class TestController {
 	@Autowired
 	private TestService testService;
 	
-	@GetMapping(name="/getMessage")
+	/*@GetMapping(name="/getMessage")*/
 	public void getMessage() {
 		log.info("hi!");
-		User user = testService.getUser();
-		log.info(user.getUserName());
+		/*User user = testService.getUser();
+		log.info(user.getUserName());*/
 	}
 }

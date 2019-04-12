@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!--命名空间，指定对应的Dao-->
+    <mapper namespace="com.platform.dao.MenuDao">
+	
+	<resultMap type="com.platform.entity.Menu" id="MenuResultMap">
+		<id column="menuId" property="menuId"  />
+	    <result column="menuName" property="menuName"/>
+	    <result column="parentmenuId" property="parentmenuId"/>
+	    <result column="createTime" property="createTime" jdbcType="DATE" />
+	    <result column="description" property="description" />
+	    <result column="url" property="url" />
+	</resultMap>
+	
+	<insert id="addMenu" parameterType="com.platform.entity.Menu">
+		INSERT INTO tmenu (
+			menuId,
+			menuName,
+			parentmenuId,
+			createTime,
+			description,
+			url
+		)
+		VALUES
+			(
+				#{menuId},
+				#{menuName},
+				#{parentmenuId},
+				#{createTime},
+				#{description},
+				#{url}
+			)
+	</insert>
+	
+	<delete id="deleteMenu" parameterType="String">
+		delete from tmenu where menuId = #{menuId}
+	</delete>
+	
+	<update id="updateMenu" parameterType="com.platform.entity.Menu">
+		update tmenu set 
+		menuName = #{menuName},parentmenuId = #{parentmenuId},
+		description = #{description},url = #{url} 
+		where menuId = #{menuId}
+	</update>
+	
+	<select id="getAllMenu" resultMap="MenuResultMap">
+		select 
+			menuId,
+			menuName,
+			parentmenuId,
+			createTime,
+			description,
+			url
+		from tmenu
+	</select>
+	
+	<select id="getMenu" resultMap="MenuResultMap" parameterType="String">
+		select 
+			menuId,
+			menuName,
+			parentmenuId,
+			createTime,
+			description,
+			url
+		from tmenu
+		where menuId = #{menuId}
+	</select>
+
+</mapper>

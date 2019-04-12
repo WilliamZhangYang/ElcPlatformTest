@@ -1,8 +1,8 @@
 package com.platform.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression.DateTime;
 
 public class User {
 
@@ -18,11 +18,11 @@ public class User {
 	
 	private String email;
 	
-	private DateTime createTime;
+	private Date createTime;
 	
-	private DateTime loginTime;
+	private Date loginTime;
 	
-	private DateTime lastLoginTime;
+	private Date lastLoginTime;
 	
 	private BigDecimal count;
 
@@ -74,28 +74,29 @@ public class User {
 		this.email = email;
 	}
 
-	public DateTime getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(DateTime createTime) {
-		this.createTime = createTime;
-	}
-
-	public DateTime getLoginTime() {
+	
+	public Date getLoginTime() {
 		return loginTime;
 	}
 
-	public void setLoginTime(DateTime loginTime) {
+	public void setLoginTime(Date loginTime) {
 		this.loginTime = loginTime;
 	}
 
-	public DateTime getLastLoginTime() {
+	public Date getLastLoginTime() {
 		return lastLoginTime;
 	}
 
-	public void setLastLoginTime(DateTime lastLoginTime) {
+	public void setLastLoginTime(Date lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	public BigDecimal getCount() {
